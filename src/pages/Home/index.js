@@ -17,6 +17,7 @@ import {
   setModalVisible,
   setSudahBayar,
 } from '../../config/redux/action';
+import {FAB} from '../../components';
 
 const Home = () => {
   const {dataHutangs, form} = useSelector(state => state.hutangsReducer);
@@ -40,8 +41,7 @@ const Home = () => {
     dispatch(setSudahBayar(id));
   };
 
-  const addData = async e => {
-    e.preventDefault();
+  const addData = () => {
     dispatch(createHutang(form));
   };
 
@@ -54,7 +54,7 @@ const Home = () => {
   );
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{height: '100%'}}>
       {!isLoading ? (
         <FlatList
           data={dataHutangs}
@@ -73,11 +73,7 @@ const Home = () => {
         onChange={onChange}
         addData={addData}
       />
-      <TouchableOpacity
-        style={{borderWidth: 0.8, padding: 3, borderRadius: 5}}
-        onPress={showModal}>
-        <Text style={{fontWeight: 'bold'}}>ADD</Text>
-      </TouchableOpacity>
+      <FAB onPress={showModal} />
     </SafeAreaView>
   );
 };
