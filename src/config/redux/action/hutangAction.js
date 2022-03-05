@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import {setIsLoading} from './globalAction';
+import {setIsLoading, setModalVisible} from './globalAction';
 
 export const setDataHutangs = () => dispatch => {
   const urlDev = 'http://10.0.2.2:3030/hutang/list-hutang';
@@ -14,6 +14,37 @@ export const setDataHutangs = () => dispatch => {
       });
 
       dispatch(setIsLoading(false));
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+export const setForm = (formType, formValue) => {
+  return {type: 'SET_FORM_HUTANG', formType, formValue};
+};
+
+export const setEmptyForm = () => {
+  return {type: 'SET_EMPTY_FORM_HUTANG'};
+};
+
+export const createHutang = form => dispatch => {
+  dispatch(setIsLoading(true));
+  const {name, product, price} = form;
+
+  Axios.post(
+    'https://utank-api.herokuapp.com/hutang/add-hutang',
+    {name: name, product: product, price: price},
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    },
+  )
+    .then(() => {
+      dispatch(setModalVisible(false));
+      dispatch(setEmptyForm());
+      dispatch(setDataHutangs());
     })
     .catch(err => {
       console.log(err);

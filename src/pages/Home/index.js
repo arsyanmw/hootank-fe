@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   Text,
@@ -9,7 +9,6 @@ import {
   TextInput,
   StyleSheet,
 } from 'react-native';
-import Axios from 'axios';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   createHutang,
@@ -19,8 +18,7 @@ import {
 } from '../../config/redux/action';
 
 const Home = () => {
-  const {dataHutangs} = useSelector(state => state.hutangsReducer);
-  const {form} = useSelector(state => state.createHutangReducer);
+  const {dataHutangs, form} = useSelector(state => state.hutangsReducer);
   const {isLoading, modalVisible} = useSelector(state => state.globalReducer);
 
   const dispatch = useDispatch();
@@ -37,7 +35,7 @@ const Home = () => {
     dispatch(setModalVisible(false));
   };
 
-  const onRemove = id => e => {
+  const handleSudahbayar = id => e => {
     //setDataHutang([...dataHutang.filter(it => it.id !== id)]);
   };
 
@@ -50,7 +48,9 @@ const Home = () => {
     dispatch(setForm(type, e));
   };
 
-  const renderItem = ({item}) => <Item items={item} onRemove={onRemove} />;
+  const renderItem = ({item}) => (
+    <Item items={item} onRemove={handleSudahbayar} />
+  );
 
   return (
     <SafeAreaView>
@@ -102,7 +102,7 @@ const Item = ({items, onRemove}) => {
       <View style={{alignItems: 'flex-end', marginTop: 10}}>
         <TouchableOpacity
           style={[{borderWidth: 0.8, padding: 3, borderRadius: 5}]}
-          onPress={onRemove(items.id)}>
+          onPress={onRemove(items._id)}>
           <Text style={{fontWeight: 'bold'}}>Sudah Bayar</Text>
         </TouchableOpacity>
       </View>
