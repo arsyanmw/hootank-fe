@@ -10,6 +10,7 @@ export const ItemData = ({data, ...rest}) => {
           borderBottomWidth: 1,
           fontSize: 15,
           fontWeight: 'bold',
+          color: '#000',
         }}>
         {data.name}
       </Text>
@@ -19,13 +20,17 @@ export const ItemData = ({data, ...rest}) => {
           justifyContent: 'space-between',
         }}>
         <View>
-          <Text style={{fontStyle: 'italic'}}>{data.product}</Text>
+          <Text style={{fontStyle: 'italic', color: '#000'}}>
+            {data.product}
+          </Text>
         </View>
         <View>
-          <Text style={{fontWeight: 'bold'}}>Rp {data.price}</Text>
+          <Text style={{fontWeight: 'bold', color: '#000'}}>
+            Rp {data.price}
+          </Text>
         </View>
       </View>
-      <View style={{alignItems: 'flex-end', marginTop: 10}}>
+      <View style={{alignItems: 'flex-end', marginTop: 10, color: '#000'}}>
         <Button label={'Sudah Bayar'} {...rest} />
       </View>
     </View>

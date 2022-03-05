@@ -8,7 +8,7 @@ import {Store} from './config';
 const App = () => {
   return (
     <Provider store={Store}>
-      <View>
+      <View style={{backgroundColor: '#fff'}}>
         <Home />
       </View>
     </Provider>

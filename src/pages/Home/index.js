@@ -94,7 +94,8 @@ const ModalForm = ({visible, onClose, formData, onChange, addData}) => {
                 style={{
                   fontWeight: 'bold',
                   fontSize: 15,
-                  color: colors.btn.danger,
+                  backgroundColor: colors.btn.danger,
+                  color: '#fff',
                 }}>
                 Tutup
               </Text>
@@ -102,27 +103,40 @@ const ModalForm = ({visible, onClose, formData, onChange, addData}) => {
           </View>
 
           <View style={{marginTop: 20}}>
-            <Text style={{fontWeight: 'bold'}}>Nama</Text>
+            <Text style={{fontWeight: 'bold', color: '#000'}}>Nama</Text>
             <TextInput
-              style={{borderBottomWidth: 1}}
+              style={{
+                borderBottomWidth: 1,
+                color: '#34495e',
+                fontWeight: 'bold',
+              }}
               value={formData.name}
               onChangeText={e => onChange(e, 'name')}
             />
           </View>
           <View style={{marginTop: 10}}>
-            <Text style={{fontWeight: 'bold'}}>Produk</Text>
+            <Text style={{fontWeight: 'bold', color: '#000'}}>Produk</Text>
             <TextInput
-              style={{borderBottomWidth: 1}}
+              style={{
+                borderBottomWidth: 1,
+                color: '#34495e',
+                fontWeight: 'bold',
+              }}
               value={formData.product}
               onChangeText={e => onChange(e, 'product')}
             />
           </View>
           <View style={{marginTop: 10}}>
-            <Text style={{fontWeight: 'bold'}}>Price</Text>
+            <Text style={{fontWeight: 'bold', color: '#000'}}>Price</Text>
             <TextInput
-              style={{borderBottomWidth: 1}}
+              style={{
+                borderBottomWidth: 1,
+                color: '#34495e',
+                fontWeight: 'bold',
+              }}
               value={formData.price}
               onChangeText={e => onChange(e, 'price')}
+              keyboardType="numeric"
             />
           </View>
 
