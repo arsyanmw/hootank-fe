@@ -15,6 +15,7 @@ import {
   setDataHutangs,
   setForm,
   setModalVisible,
+  setSudahBayar,
 } from '../../config/redux/action';
 
 const Home = () => {
@@ -35,8 +36,8 @@ const Home = () => {
     dispatch(setModalVisible(false));
   };
 
-  const handleSudahbayar = id => e => {
-    //setDataHutang([...dataHutang.filter(it => it.id !== id)]);
+  const handleSudahbayar = id => {
+    dispatch(setSudahBayar(id));
   };
 
   const addData = async e => {
