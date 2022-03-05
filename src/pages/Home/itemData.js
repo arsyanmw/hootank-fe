@@ -1,6 +1,7 @@
 import {Text, View} from 'react-native';
 import {Button} from '../../components';
 import React from 'react';
+import NumberFormat from 'react-number-format';
 
 export const ItemData = ({data, ...rest}) => {
   return (
@@ -26,7 +27,13 @@ export const ItemData = ({data, ...rest}) => {
         </View>
         <View>
           <Text style={{fontWeight: 'bold', color: '#000'}}>
-            Rp {data.price}
+            <NumberFormat
+              value={data.price}
+              displayType={'text'}
+              thousandSeparator={true}
+              prefix={'Rp '}
+              renderText={value => <Text>{value}</Text>}
+            />
           </Text>
         </View>
       </View>
