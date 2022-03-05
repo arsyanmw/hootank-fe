@@ -1,12 +1,13 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {colors} from '../../variables/colors';
 
-export const FAB = ({...rest}) => {
+export const FAB = ({label, ...rest}) => {
   return (
     <TouchableOpacity {...rest} style={styles.btnContainer}>
       <View>
         <View style={styles.textContainer}>
-          <Text style={styles.text}>+</Text>
+          <Text style={styles.text}>{label}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 15,
     right: 15,
-    backgroundColor: '#3498db',
+    backgroundColor: colors.btn.primary,
     borderRadius: 100,
     padding: 10,
     elevation: 5,

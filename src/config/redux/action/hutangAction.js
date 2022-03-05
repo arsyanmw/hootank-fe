@@ -30,6 +30,7 @@ export const setEmptyForm = () => {
 
 export const createHutang = form => dispatch => {
   dispatch(setIsLoading(true));
+  dispatch(setModalVisible(false));
   const {name, product, price} = form;
 
   Axios.post(
@@ -42,7 +43,6 @@ export const createHutang = form => dispatch => {
     },
   )
     .then(() => {
-      dispatch(setModalVisible(false));
       dispatch(setEmptyForm());
       dispatch(setDataHutangs());
     })

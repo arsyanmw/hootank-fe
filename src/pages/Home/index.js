@@ -2,8 +2,7 @@ import React, {useEffect} from 'react';
 import {
   View,
   Text,
-  FlatList,
-  SafeAreaView,
+  ScrollView,
   TouchableOpacity,
   Modal,
   TextInput,
@@ -17,7 +16,10 @@ import {
   setModalVisible,
   setSudahBayar,
 } from '../../config/redux/action';
-import {FAB} from '../../components';
+import {globalVariable} from '../../variables/global';
+import {Button, Card, FAB} from '../../components';
+import {ItemData} from './itemData';
+import {colors} from '../../variables/colors';
 
 const Home = () => {
   const {dataHutangs, form} = useSelector(state => state.hutangsReducer);
@@ -49,23 +51,25 @@ const Home = () => {
     dispatch(setForm(type, e));
   };
 
-  const renderItem = ({item}) => (
-    <Item items={item} onRemove={handleSudahbayar} />
-  );
-
   return (
-    <SafeAreaView style={{height: '100%'}}>
-      {!isLoading ? (
-        <FlatList
-          data={dataHutangs}
-          renderItem={renderItem}
-          keyExtractor={item => item._id}
-        />
-      ) : (
-        <View>
-          <Text>Loading...</Text>
+    <View style={{height: '100%'}}>
+      {isLoading ? (
+        <View style={styles.loading}>
+          <Text style={styles.loadingText}>Loading...</Text>
         </View>
+      ) : (
+        <ScrollView style={[globalVariable.padding]}>
+          {dataHutangs.map(item => (
+            <Card key={item._id}>
+              <ItemData
+                data={item}
+                onPress={() => handleSudahbayar(item._id)}
+              />
+            </Card>
+          ))}
+        </ScrollView>
       )}
+      <FAB onPress={showModal} label={'+'} />
       <ModalForm
         visible={modalVisible}
         onClose={onCloseModal}
@@ -73,36 +77,6 @@ const Home = () => {
         onChange={onChange}
         addData={addData}
       />
-      <FAB onPress={showModal} />
-    </SafeAreaView>
-  );
-};
-
-const Item = ({items, onRemove}) => {
-  return (
-    <View
-      style={[
-        {borderRadius: 5, marginBottom: 10, padding: 10},
-        styles.boxShadow,
-      ]}>
-      <Text style={{borderBottomWidth: 1, fontSize: 15, fontWeight: 'bold'}}>
-        {items.name}
-      </Text>
-      <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-        <View>
-          <Text style={{fontStyle: 'italic'}}>{items.product}</Text>
-        </View>
-        <View>
-          <Text style={{fontWeight: 'bold'}}>Rp {items.price}</Text>
-        </View>
-      </View>
-      <View style={{alignItems: 'flex-end', marginTop: 10}}>
-        <TouchableOpacity
-          style={[{borderWidth: 0.8, padding: 3, borderRadius: 5}]}
-          onPress={onRemove(items._id)}>
-          <Text style={{fontWeight: 'bold'}}>Sudah Bayar</Text>
-        </TouchableOpacity>
-      </View>
     </View>
   );
 };
@@ -110,26 +84,20 @@ const Item = ({items, onRemove}) => {
 const ModalForm = ({visible, onClose, formData, onChange, addData}) => {
   return (
     <Modal animationType="fade" visible={visible} transparent={true}>
-      <View
-        style={{
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: 'rgba(0,0,0,0.5)',
-        }}>
-        <View
-          style={{
-            marginTop: 100,
-            marginBottom: 200,
-            padding: 10,
-            width: 300,
-            height: 400,
-            borderRadius: 5,
-            backgroundColor: 'white',
-          }}>
-          <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
-            <TouchableOpacity onPress={onClose}>
-              <Text style={{fontStyle: 'italic'}}>Tutup</Text>
+      <View style={styles.modals}>
+        <View style={styles.modalContainer}>
+          <View style={{alignItems: 'flex-end', height: 30}}>
+            <TouchableOpacity
+              onPress={onClose}
+              style={{padding: 5, elevation: 1, borderRadius: 5}}>
+              <Text
+                style={{
+                  fontWeight: 'bold',
+                  fontSize: 15,
+                  color: colors.btn.danger,
+                }}>
+                Tutup
+              </Text>
             </TouchableOpacity>
           </View>
 
@@ -165,11 +133,11 @@ const ModalForm = ({visible, onClose, formData, onChange, addData}) => {
               alignItems: 'center',
               marginTop: 15,
             }}>
-            <TouchableOpacity
-              style={{width: 100, alignItems: 'center'}}
-              onPress={addData}>
-              <Text style={{fontWeight: 'bold', fontSize: 20}}>Add</Text>
-            </TouchableOpacity>
+            <Button
+              label={'Tambah Hutang'}
+              onPress={addData}
+              style={{marginTop: 10}}
+            />
           </View>
         </View>
       </View>
@@ -180,6 +148,33 @@ const ModalForm = ({visible, onClose, formData, onChange, addData}) => {
 const styles = StyleSheet.create({
   boxShadow: {
     elevation: 1,
+  },
+  modals: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+  },
+  modalContainer: {
+    marginTop: 100,
+    marginBottom: 200,
+    padding: 10,
+    width: 300,
+    height: 400,
+    borderRadius: 5,
+    backgroundColor: 'white',
+  },
+  loading: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignContent: 'center',
+  },
+  loadingText: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#000',
   },
 });
 
