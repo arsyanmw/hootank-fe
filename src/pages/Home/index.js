@@ -9,6 +9,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import LottieView from 'lottie-react-native';
 import {
   createHutang,
   setDataHutangs,
@@ -16,6 +17,7 @@ import {
   setModalVisible,
   setSudahBayar,
 } from '../../config/redux/action';
+import empty from '../../assets/lottie/empty.json';
 import {globalVariable} from '../../variables/global';
 import {Button, Card, FAB} from '../../components';
 import {ItemData} from './itemData';
@@ -57,7 +59,7 @@ const Home = () => {
         <View style={styles.loading}>
           <Text style={styles.loadingText}>Loading...</Text>
         </View>
-      ) : (
+      ) : dataHutangs.length ? (
         <ScrollView style={[globalVariable.padding]}>
           {dataHutangs.map(item => (
             <Card key={item._id}>
@@ -68,6 +70,8 @@ const Home = () => {
             </Card>
           ))}
         </ScrollView>
+      ) : (
+        <EmptyTransactionScreen />
       )}
       <FAB onPress={showModal} label={'+'} />
       <ModalForm
@@ -156,6 +160,17 @@ const ModalForm = ({visible, onClose, formData, onChange, addData}) => {
         </View>
       </View>
     </Modal>
+  );
+};
+
+const EmptyTransactionScreen = () => {
+  return (
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <LottieView source={empty} autoPlay style={{width: '50%'}} />
+      <Text style={{fontWeight: 'bold', color: 'darkgrey'}}>
+        Kayanya semua hutang udah dibayar deh..
+      </Text>
+    </View>
   );
 };
 
