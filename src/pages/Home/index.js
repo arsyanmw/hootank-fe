@@ -18,6 +18,7 @@ import {
   setSudahBayar,
 } from '../../config/redux/action';
 import empty from '../../assets/lottie/empty.json';
+import loading from '../../assets/lottie/loading.json';
 import {globalVariable} from '../../variables/global';
 import {Button, Card, FAB} from '../../components';
 import {ItemData} from './itemData';
@@ -53,36 +54,48 @@ const Home = () => {
     dispatch(setForm(type, e));
   };
 
-  return (
-    <View style={{height: '100%'}}>
-      {isLoading ? (
-        <View style={styles.loading}>
-          <Text style={styles.loadingText}>Loading...</Text>
+  if (isLoading) {
+    return <LoadingScreen />;
+  } else {
+    if (dataHutangs.length) {
+      return (
+        <View style={{height: '100%'}}>
+          <ScrollView style={[globalVariable.padding]}>
+            {dataHutangs.map(item => (
+              <Card key={item._id}>
+                <ItemData
+                  data={item}
+                  onPress={() => handleSudahbayar(item._id)}
+                />
+              </Card>
+            ))}
+          </ScrollView>
+          <FAB onPress={showModal} label={'+'} />
+          <ModalForm
+            visible={modalVisible}
+            onClose={onCloseModal}
+            formData={form}
+            onChange={onChange}
+            addData={addData}
+          />
         </View>
-      ) : dataHutangs.length ? (
-        <ScrollView style={[globalVariable.padding]}>
-          {dataHutangs.map(item => (
-            <Card key={item._id}>
-              <ItemData
-                data={item}
-                onPress={() => handleSudahbayar(item._id)}
-              />
-            </Card>
-          ))}
-        </ScrollView>
-      ) : (
-        <EmptyTransactionScreen />
-      )}
-      <FAB onPress={showModal} label={'+'} />
-      <ModalForm
-        visible={modalVisible}
-        onClose={onCloseModal}
-        formData={form}
-        onChange={onChange}
-        addData={addData}
-      />
-    </View>
-  );
+      );
+    } else {
+      return (
+        <View style={{height: '100%'}}>
+          <EmptyDataScreen />
+          <FAB onPress={showModal} label={'+'} />
+          <ModalForm
+            visible={modalVisible}
+            onClose={onCloseModal}
+            formData={form}
+            onChange={onChange}
+            addData={addData}
+          />
+        </View>
+      );
+    }
+  }
 };
 
 const ModalForm = ({visible, onClose, formData, onChange, addData}) => {
@@ -163,12 +176,29 @@ const ModalForm = ({visible, onClose, formData, onChange, addData}) => {
   );
 };
 
-const EmptyTransactionScreen = () => {
+const EmptyDataScreen = () => {
+  return (
+    <View style={{height: '100%'}}>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <LottieView source={empty} autoPlay style={{width: '50%'}} />
+        <Text style={{fontWeight: 'bold', color: 'darkgrey'}}>
+          Kayanya semua hutang udah dibayar deh..
+        </Text>
+      </View>
+    </View>
+  );
+};
+
+const LoadingScreen = () => {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <LottieView source={empty} autoPlay style={{width: '50%'}} />
-      <Text style={{fontWeight: 'bold', color: 'darkgrey'}}>
-        Kayanya semua hutang udah dibayar deh..
+      <LottieView
+        source={loading}
+        autoPlay
+        style={{width: '50%', height: 80}}
+      />
+      <Text style={{fontWeight: 'bold', color: '#374045'}}>
+        Mencari data hutang..
       </Text>
     </View>
   );
