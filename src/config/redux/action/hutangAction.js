@@ -7,8 +7,8 @@ export const setDataHutangs = () => dispatch => {
 
   Axios.get(urlProd)
     .then(res => {
-      dispatch(setIsRefreshing(true));
       dispatch(setIsLoading(true));
+      dispatch(setIsRefreshing(true));
 
       //set data hutang
       dispatch({
