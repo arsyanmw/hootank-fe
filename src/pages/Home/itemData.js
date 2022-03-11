@@ -38,7 +38,7 @@ export const ItemData = ({data, ...rest}) => {
         </View>
       </View>
       <View style={{alignItems: 'flex-end', marginTop: 10, color: '#000'}}>
-        <Button label={'Sudah Bayar'} {...rest} />
+        <Button label={'Lunaskan'} {...rest} />
       </View>
     </View>
   );

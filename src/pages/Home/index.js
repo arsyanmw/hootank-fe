@@ -106,12 +106,16 @@ const ModalForm = ({visible, onClose, formData, onChange, addData}) => {
           <View style={{alignItems: 'flex-end', height: 30}}>
             <TouchableOpacity
               onPress={onClose}
-              style={{padding: 5, elevation: 1, borderRadius: 5}}>
+              style={{
+                padding: 5,
+                elevation: 1,
+                borderRadius: 5,
+                backgroundColor: colors.btn.danger,
+              }}>
               <Text
                 style={{
                   fontWeight: 'bold',
                   fontSize: 15,
-                  backgroundColor: colors.btn.danger,
                   color: '#fff',
                 }}>
                 Tutup
@@ -119,56 +123,58 @@ const ModalForm = ({visible, onClose, formData, onChange, addData}) => {
             </TouchableOpacity>
           </View>
 
-          <View style={{marginTop: 20}}>
-            <Text style={{fontWeight: 'bold', color: '#000'}}>Nama</Text>
-            <TextInput
-              style={{
-                borderBottomWidth: 1,
-                color: '#34495e',
-                fontWeight: 'bold',
-              }}
-              value={formData.name}
-              onChangeText={e => onChange(e, 'name')}
-            />
-          </View>
-          <View style={{marginTop: 10}}>
-            <Text style={{fontWeight: 'bold', color: '#000'}}>Produk</Text>
-            <TextInput
-              style={{
-                borderBottomWidth: 1,
-                color: '#34495e',
-                fontWeight: 'bold',
-              }}
-              value={formData.product}
-              onChangeText={e => onChange(e, 'product')}
-            />
-          </View>
-          <View style={{marginTop: 10}}>
-            <Text style={{fontWeight: 'bold', color: '#000'}}>Price</Text>
-            <TextInput
-              style={{
-                borderBottomWidth: 1,
-                color: '#34495e',
-                fontWeight: 'bold',
-              }}
-              value={formData.price}
-              onChangeText={e => onChange(e, 'price')}
-              keyboardType="numeric"
-            />
-          </View>
+          <View style={{paddingHorizontal: 12}}>
+            <View style={{marginTop: 20}}>
+              <Text style={{fontWeight: 'bold', color: '#000'}}>Nama</Text>
+              <TextInput
+                style={{
+                  borderBottomWidth: 1,
+                  color: '#34495e',
+                  fontWeight: 'bold',
+                }}
+                value={formData.name}
+                onChangeText={e => onChange(e, 'name')}
+              />
+            </View>
+            <View style={{marginTop: 10}}>
+              <Text style={{fontWeight: 'bold', color: '#000'}}>Produk</Text>
+              <TextInput
+                style={{
+                  borderBottomWidth: 1,
+                  color: '#34495e',
+                  fontWeight: 'bold',
+                }}
+                value={formData.product}
+                onChangeText={e => onChange(e, 'product')}
+              />
+            </View>
+            <View style={{marginTop: 10}}>
+              <Text style={{fontWeight: 'bold', color: '#000'}}>Price</Text>
+              <TextInput
+                style={{
+                  borderBottomWidth: 1,
+                  color: '#34495e',
+                  fontWeight: 'bold',
+                }}
+                value={formData.price}
+                onChangeText={e => onChange(e, 'price')}
+                keyboardType="numeric"
+              />
+            </View>
 
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginTop: 15,
-            }}>
-            <Button
-              label={'Tambah Hutang'}
-              onPress={addData}
-              style={{marginTop: 10}}
-            />
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+                marginTop: 15,
+              }}>
+              <Button
+                label={'Tambah Hutang'}
+                onPress={addData}
+                style={{marginTop: 10}}
+              />
+            </View>
           </View>
         </View>
       </View>
@@ -191,15 +197,17 @@ const EmptyDataScreen = () => {
 
 const LoadingScreen = () => {
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <LottieView
-        source={loading}
-        autoPlay
-        style={{width: '50%', height: 80}}
-      />
-      <Text style={{fontWeight: 'bold', color: '#374045'}}>
-        Mencari data hutang..
-      </Text>
+    <View style={{height: '100%'}}>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <LottieView
+          source={loading}
+          autoPlay
+          style={{width: '50%', height: 80}}
+        />
+        <Text style={{fontWeight: 'bold', color: '#1C658C'}}>
+          Tunggu Sebentar..
+        </Text>
+      </View>
     </View>
   );
 };
@@ -219,7 +227,7 @@ const styles = StyleSheet.create({
     marginBottom: 200,
     padding: 10,
     width: 300,
-    height: 400,
+    height: 370,
     borderRadius: 5,
     backgroundColor: 'white',
   },
