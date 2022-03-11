@@ -7,6 +7,7 @@ import {
   Modal,
   TextInput,
   StyleSheet,
+  RefreshControl,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import LottieView from 'lottie-react-native';
@@ -26,7 +27,9 @@ import {colors} from '../../variables/colors';
 
 const Home = () => {
   const {dataHutangs, form} = useSelector(state => state.hutangsReducer);
-  const {isLoading, modalVisible} = useSelector(state => state.globalReducer);
+  const {isLoading, modalVisible, isRefreshing} = useSelector(
+    state => state.globalReducer,
+  );
 
   const dispatch = useDispatch();
 
@@ -54,47 +57,45 @@ const Home = () => {
     dispatch(setForm(type, e));
   };
 
+  const onRefresh = () => {
+    dispatch(setDataHutangs());
+  };
+
   if (isLoading) {
     return <LoadingScreen />;
   } else {
-    if (dataHutangs.length) {
-      return (
-        <View style={{height: '100%'}}>
-          <ScrollView style={[globalVariable.padding]}>
-            {dataHutangs.map(item => (
+    return (
+      <View style={{height: '100%'}}>
+        <ScrollView
+          style={[globalVariable.padding]}
+          refreshControl={
+            <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
+          }>
+          {dataHutangs.length ? (
+            dataHutangs.map(item => (
               <Card key={item._id}>
                 <ItemData
                   data={item}
                   onPress={() => handleSudahbayar(item._id)}
                 />
               </Card>
-            ))}
-          </ScrollView>
-          <FAB onPress={showModal} label={'+'} />
-          <ModalForm
-            visible={modalVisible}
-            onClose={onCloseModal}
-            formData={form}
-            onChange={onChange}
-            addData={addData}
-          />
-        </View>
-      );
-    } else {
-      return (
-        <View style={{height: '100%'}}>
-          <EmptyDataScreen />
-          <FAB onPress={showModal} label={'+'} />
-          <ModalForm
-            visible={modalVisible}
-            onClose={onCloseModal}
-            formData={form}
-            onChange={onChange}
-            addData={addData}
-          />
-        </View>
-      );
-    }
+            ))
+          ) : (
+            <View style={{height: globalVariable.height - 80}}>
+              <EmptyDataScreen />
+            </View>
+          )}
+        </ScrollView>
+        <FAB onPress={showModal} label={'+'} />
+        <ModalForm
+          visible={modalVisible}
+          onClose={onCloseModal}
+          formData={form}
+          onChange={onChange}
+          addData={addData}
+        />
+      </View>
+    );
   }
 };
 
@@ -184,13 +185,11 @@ const ModalForm = ({visible, onClose, formData, onChange, addData}) => {
 
 const EmptyDataScreen = () => {
   return (
-    <View style={{height: '100%'}}>
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <LottieView source={empty} autoPlay style={{width: '50%'}} />
-        <Text style={{fontWeight: 'bold', color: 'darkgrey'}}>
-          Kayanya semua hutang udah dibayar deh..
-        </Text>
-      </View>
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <LottieView source={empty} autoPlay style={{width: '50%'}} />
+      <Text style={{fontWeight: 'bold', color: 'darkgrey'}}>
+        Kayanya semua hutang udah dibayar deh..
+      </Text>
     </View>
   );
 };

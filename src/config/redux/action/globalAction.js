@@ -11,3 +11,10 @@ export const setModalVisible = payload => {
     payload: payload,
   };
 };
+
+export const setIsRefreshing = payload => {
+  return {
+    type: 'SET_IS_REFRESHING',
+    payload: payload,
+  };
+};

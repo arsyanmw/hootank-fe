@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import {setIsLoading, setModalVisible} from './globalAction';
+import {setIsLoading, setIsRefreshing, setModalVisible} from './globalAction';
 
 export const setDataHutangs = () => dispatch => {
   const urlDev = 'http://10.0.2.2:3030/hutang/list-hutang';
@@ -7,6 +7,9 @@ export const setDataHutangs = () => dispatch => {
 
   Axios.get(urlProd)
     .then(res => {
+      dispatch(setIsRefreshing(true));
+      dispatch(setIsLoading(true));
+
       //set data hutang
       dispatch({
         type: 'SET_DATA_HUTANG',
@@ -14,6 +17,7 @@ export const setDataHutangs = () => dispatch => {
       });
 
       dispatch(setIsLoading(false));
+      dispatch(setIsRefreshing(false));
     })
     .catch(err => {
       console.log(err);

@@ -1,6 +1,7 @@
 const initialStateGlobal = {
   isLoading: true,
   modalVisible: false,
+  isRefreshing: false,
 };
 
 const globalReducer = (state = initialStateGlobal, action) => {
@@ -14,6 +15,11 @@ const globalReducer = (state = initialStateGlobal, action) => {
       return {
         ...state,
         modalVisible: action.payload,
+      };
+    case 'SET_IS_REFRESHING':
+      return {
+        ...state,
+        isRefreshing: action.payload,
       };
     default:
       return state;
