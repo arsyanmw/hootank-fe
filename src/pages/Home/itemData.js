@@ -9,6 +9,7 @@ import dana from '../../assets/products/dana.png';
 import ovo from '../../assets/products/ovo.png';
 import sim from '../../assets/products/sim.png';
 import RightArrow from '../../assets/icons/right-arrow.svg';
+import {useSelector} from 'react-redux';
 
 // export const ItemData = ({data, ...rest}) => {
 //   return (
@@ -52,6 +53,8 @@ import RightArrow from '../../assets/icons/right-arrow.svg';
 // };
 
 export const ItemData = ({data, ...rest}) => {
+  const {dataHutangs} = useSelector(state => state.hutangsReducer);
+
   const getImage = () => {
     switch (data.product) {
       case 'token':
