@@ -8,7 +8,7 @@ export const Card = props => {
 const styles = StyleSheet.create({
   cardContainer: {
     backgroundColor: '#fff',
-    borderRadius: 10,
+    borderRadius: 30,
     padding: 10,
     margin: 8,
     elevation: 5,
