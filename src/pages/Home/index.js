@@ -21,7 +21,6 @@ import {
   setSudahBayar,
 } from '../../config/redux/action';
 import empty from '../../assets/lottie/empty.json';
-import loading from '../../assets/lottie/loading.json';
 import {globalVariable} from '../../variables/global';
 import {Button, TouchableCard, FAB, LoadingScreen} from '../../components';
 import {ItemData} from './itemData';
