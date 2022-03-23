@@ -3,7 +3,7 @@ import {TouchableOpacity, StyleSheet} from 'react-native';
 
 export const TouchableCard = props => {
   return (
-    <TouchableOpacity style={styles.cardContainer}>
+    <TouchableOpacity style={styles.cardContainer} {...props}>
       {props.children}
     </TouchableOpacity>
   );
