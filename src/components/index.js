@@ -1,5 +1,5 @@
 import {FAB} from './FAB';
-import {Card} from './Card';
+import {TouchableCard} from './TouchableCard';
 import {Button} from './Button';
 
-export {FAB, Card, Button};
+export {FAB, TouchableCard, Button};
