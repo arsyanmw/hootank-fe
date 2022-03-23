@@ -74,11 +74,40 @@ export const ItemData = ({data, ...rest}) => {
       : str.toUpperCase();
   };
 
+  const getTotalHutangByName = name => {
+    const hasManyHutang = dataHutangs.filter(hutang => hutang.name === name);
+
+    if (hasManyHutang.length > 1) {
+      return (
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'red',
+            borderRadius: 50,
+            width: 15,
+            height: 15,
+            position: 'absolute',
+            bottom: 0,
+            right: 5,
+          }}>
+          <Text style={{color: '#fff', fontSize: 10, fontWeight: 'bold'}}>
+            +{hasManyHutang.length - 1}
+          </Text>
+        </View>
+      );
+    }
+  };
+
   return (
     <View style={{flex: 1, flexDirection: 'row', padding: 10}}>
       <View style={{flex: 5, flexDirection: 'row'}}>
         <View style={{flex: 1, justifyContent: 'center'}}>
-          <Image source={getImage()} style={{width: 40, height: 40}} />
+          <Image
+            source={getImage()}
+            style={{width: 40, height: 40, borderRadius: 50}}
+          />
+          {getTotalHutangByName(data.name)}
         </View>
         <View
           style={{
