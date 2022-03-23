@@ -2,10 +2,13 @@ import {Text, View, Image} from 'react-native';
 import {Button} from '../../components';
 import React from 'react';
 import NumberFormat from 'react-number-format';
+
+// assets
 import token from '../../assets/products/token.png';
 import dana from '../../assets/products/dana.png';
 import ovo from '../../assets/products/ovo.png';
 import sim from '../../assets/products/sim.png';
+import RightArrow from '../../assets/icons/right-arrow.svg';
 
 // export const ItemData = ({data, ...rest}) => {
 //   return (
@@ -102,8 +105,8 @@ export const ItemData = ({data, ...rest}) => {
           </View>
         </View>
       </View>
-      <View style={{flex: 1}}>
-        <Text>hcvbvcbvcbcbc</Text>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <RightArrow width={20} height={20} fill="#b2bec3" />
       </View>
     </View>
   );
