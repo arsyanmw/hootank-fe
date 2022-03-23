@@ -11,6 +11,8 @@ import {
 } from 'react-native';
 import {useDispatch, useSelector, connect} from 'react-redux';
 import LottieView from 'lottie-react-native';
+
+// assets
 import {
   createHutang,
   setDataHutangs,
@@ -26,7 +28,7 @@ import {Button, TouchableCard, FAB, LoadingScreen} from '../../components';
 import {ItemData} from './itemData';
 import {colors} from '../../variables/colors';
 
-const Home = () => {
+const Home = ({navigation}) => {
   const {dataHutangs, form} = useSelector(state => state.hutangsReducer);
   const {isLoading, modalVisible, isRefreshing} = useSelector(
     state => state.globalReducer,
