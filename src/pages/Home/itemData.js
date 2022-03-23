@@ -1,7 +1,5 @@
 import {Text, View, Image} from 'react-native';
-import {Button} from '../../components';
 import React from 'react';
-import NumberFormat from 'react-number-format';
 
 // assets
 import token from '../../assets/products/token.png';
