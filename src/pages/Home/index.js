@@ -15,6 +15,8 @@ import {
   createHutang,
   setDataHutangs,
   setForm,
+  setIsLoading,
+  setIsRefreshing,
   setModalVisible,
   setSudahBayar,
 } from '../../config/redux/action';
@@ -58,6 +60,8 @@ const Home = () => {
   };
 
   const onRefresh = () => {
+    dispatch(setIsLoading(true));
+    dispatch(setIsRefreshing(true));
     dispatch(setDataHutangs());
   };
 
