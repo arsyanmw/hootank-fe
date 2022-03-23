@@ -9,7 +9,7 @@ import {
   StyleSheet,
   RefreshControl,
 } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector, connect} from 'react-redux';
 import LottieView from 'lottie-react-native';
 import {
   createHutang,
@@ -69,7 +69,7 @@ const Home = () => {
     return <LoadingScreen />;
   } else {
     return (
-      <View style={{height: '100%'}}>
+      <View style={{height: '100%', backgroundColor: '#fff'}}>
         <ScrollView
           style={[globalVariable.padding]}
           refreshControl={
@@ -248,4 +248,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default connect()(Home);
