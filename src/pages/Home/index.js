@@ -23,7 +23,7 @@ import {
 import empty from '../../assets/lottie/empty.json';
 import loading from '../../assets/lottie/loading.json';
 import {globalVariable} from '../../variables/global';
-import {Button, TouchableCard, FAB} from '../../components';
+import {Button, TouchableCard, FAB, LoadingScreen} from '../../components';
 import {ItemData} from './itemData';
 import {colors} from '../../variables/colors';
 
@@ -194,23 +194,6 @@ const EmptyDataScreen = () => {
       <Text style={{fontWeight: 'bold', color: 'darkgrey'}}>
         Kayanya semua hutang udah dibayar deh..
       </Text>
-    </View>
-  );
-};
-
-const LoadingScreen = () => {
-  return (
-    <View style={{height: '100%'}}>
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <LottieView
-          source={loading}
-          autoPlay
-          style={{width: '50%', height: 80}}
-        />
-        <Text style={{fontWeight: 'bold', color: '#1C658C'}}>
-          Tunggu Sebentar..
-        </Text>
-      </View>
     </View>
   );
 };
