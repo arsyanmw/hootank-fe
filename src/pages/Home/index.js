@@ -21,7 +21,7 @@ import {
 import empty from '../../assets/lottie/empty.json';
 import loading from '../../assets/lottie/loading.json';
 import {globalVariable} from '../../variables/global';
-import {Button, Card, FAB} from '../../components';
+import {Button, TouchableCard, FAB} from '../../components';
 import {ItemData} from './itemData';
 import {colors} from '../../variables/colors';
 
@@ -73,12 +73,12 @@ const Home = () => {
           }>
           {dataHutangs.length ? (
             dataHutangs.map(item => (
-              <Card key={item._id}>
+              <TouchableCard key={item._id}>
                 <ItemData
                   data={item}
                   onPress={() => handleSudahbayar(item._id)}
                 />
-              </Card>
+              </TouchableCard>
             ))
           ) : (
             <View style={{height: globalVariable.height - 80}}>
