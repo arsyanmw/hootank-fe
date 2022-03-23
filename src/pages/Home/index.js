@@ -34,6 +34,17 @@ const Home = () => {
 
   const dispatch = useDispatch();
 
+  // remove duplicate dataHutangs that has same name
+  const listHutang = () => {
+    const unique = {};
+    dataHutangs.forEach(item => {
+      if (!unique[item.name]) {
+        unique[item.name] = item;
+      }
+    });
+    return Object.keys(unique).map(key => unique[key]);
+  };
+
   useEffect(() => {
     dispatch(setDataHutangs());
   }, [dispatch]);
@@ -74,9 +85,13 @@ const Home = () => {
           refreshControl={
             <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
           }>
-          {dataHutangs.length ? (
-            dataHutangs.map(item => (
-              <TouchableCard key={item._id}>
+          {listHutang().length ? (
+            listHutang().map(item => (
+              <TouchableCard
+                key={item._id}
+                onPress={() =>
+                  navigation.navigate('Detail', {name: item.name})
+                }>
                 <ItemData
                   data={item}
                   onPress={() => handleSudahbayar(item._id)}
