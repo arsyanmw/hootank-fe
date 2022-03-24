@@ -36,7 +36,7 @@ export const createHutang = form => dispatch => {
 
   Axios.post(
     'https://utank-api.herokuapp.com/hutang/add-hutang',
-    {name: name, product: product, price: price},
+    {name: name, product: product.toLowerCase(), price: price},
     {
       headers: {
         'Content-Type': 'application/json',
