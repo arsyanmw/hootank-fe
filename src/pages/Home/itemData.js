@@ -93,7 +93,7 @@ export const ItemData = ({data, ...rest}) => {
           <View>
             <Text
               style={{
-                fontSize: 10,
+                fontSize: 12,
                 fontStyle: 'italic',
                 fontWeight: 'bold',
                 color: '#95a5a6',
