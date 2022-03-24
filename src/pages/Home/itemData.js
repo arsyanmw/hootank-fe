@@ -75,7 +75,7 @@ export const ItemData = ({data, ...rest}) => {
       : str.toUpperCase();
   };
 
-  const getTotalHutangByName = name => {
+  const badgeTotalHutangByName = name => {
     const hasManyHutang = dataHutangs.filter(hutang => hutang.name === name);
 
     if (hasManyHutang.length > 1) {
@@ -90,7 +90,7 @@ export const ItemData = ({data, ...rest}) => {
             height: 15,
             position: 'absolute',
             bottom: 0,
-            right: 5,
+            right: 0,
           }}>
           <Text style={{color: '#fff', fontSize: 10, fontWeight: 'bold'}}>
             +{hasManyHutang.length - 1}
@@ -108,7 +108,7 @@ export const ItemData = ({data, ...rest}) => {
             source={getImage()}
             style={{width: 40, height: 40, borderRadius: 50}}
           />
-          {getTotalHutangByName(data.name)}
+          {badgeTotalHutangByName(data.name)}
         </View>
         <View
           style={{
