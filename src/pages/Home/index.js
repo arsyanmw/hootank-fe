@@ -144,7 +144,7 @@ const ModalForm = ({visible, onClose, formData, onChange, addData}) => {
             </TouchableOpacity>
           </View>
 
-          <View style={{paddingHorizontal: 12}}>
+          <View style={{padding: 15}}>
             <View style={{marginTop: 20}}>
               <Text style={{fontWeight: 'bold', color: '#000'}}>Nama</Text>
               <TextInput
@@ -229,8 +229,8 @@ const styles = StyleSheet.create({
     marginTop: 100,
     marginBottom: 200,
     padding: 10,
-    width: 300,
-    height: 370,
+    width: '85%',
+    height: 'auto',
     borderRadius: 5,
     backgroundColor: 'white',
   },
