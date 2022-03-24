@@ -7,7 +7,7 @@ import token from '../../assets/products/token.png';
 import dana from '../../assets/products/dana.png';
 import ovo from '../../assets/products/ovo.png';
 import sim from '../../assets/products/sim.png';
-import unknown from '../../assets/icons/unknown.png';
+import shop from '../../assets/icons/shop.png';
 import {Button} from '../../components';
 
 export const ItemDataDetails = ({data, ...rest}) => {
@@ -22,7 +22,7 @@ export const ItemDataDetails = ({data, ...rest}) => {
       case 'pulsa':
         return sim;
       default:
-        return unknown;
+        return shop;
     }
   };
 

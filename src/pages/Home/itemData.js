@@ -6,49 +6,9 @@ import token from '../../assets/products/token.png';
 import dana from '../../assets/products/dana.png';
 import ovo from '../../assets/products/ovo.png';
 import sim from '../../assets/products/sim.png';
+import shop from '../../assets/icons/shop.png';
 import RightArrow from '../../assets/icons/right-arrow.svg';
 import {useSelector} from 'react-redux';
-
-// export const ItemData = ({data, ...rest}) => {
-//   return (
-//     <View>
-//       <Text
-//         style={{
-//           borderBottomWidth: 1,
-//           fontSize: 15,
-//           fontWeight: 'bold',
-//           color: '#000',
-//         }}>
-//         {data.name}
-//       </Text>
-//       <View
-//         style={{
-//           flexDirection: 'row',
-//           justifyContent: 'space-between',
-//         }}>
-//         <View>
-//           <Text style={{fontStyle: 'italic', color: '#000'}}>
-//             {data.product}
-//           </Text>
-//         </View>
-//         <View>
-//           <Text style={{fontWeight: 'bold', color: '#000'}}>
-//             <NumberFormat
-//               value={data.price}
-//               displayType={'text'}
-//               thousandSeparator={true}
-//               prefix={'Rp '}
-//               renderText={value => <Text>{value}</Text>}
-//             />
-//           </Text>
-//         </View>
-//       </View>
-//       <View style={{alignItems: 'flex-end', marginTop: 10, color: '#000'}}>
-//         <Button label={'Lunaskan'} {...rest} />
-//       </View>
-//     </View>
-//   );
-// };
 
 export const ItemData = ({data, ...rest}) => {
   const {dataHutangs} = useSelector(state => state.hutangsReducer);
@@ -64,7 +24,7 @@ export const ItemData = ({data, ...rest}) => {
       case 'pulsa':
         return sim;
       default:
-        return null;
+        return shop;
     }
   };
 
