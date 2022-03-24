@@ -19,6 +19,7 @@ import {
   setForm,
   setIsLoading,
   setIsRefreshing,
+  setListProduks,
   setModalVisible,
   setSudahBayar,
 } from '../../config/redux/action';
@@ -30,6 +31,7 @@ import {colors} from '../../variables/colors';
 
 const Home = ({navigation}) => {
   const {dataHutangs, form} = useSelector(state => state.hutangsReducer);
+  const {listProduks} = useSelector(state => state.produksReducer);
   const {isLoading, modalVisible, isRefreshing} = useSelector(
     state => state.globalReducer,
   );
@@ -49,6 +51,7 @@ const Home = ({navigation}) => {
 
   useEffect(() => {
     dispatch(setDataHutangs());
+    dispatch(setListProduks());
   }, [dispatch]);
 
   const showModal = () => {
