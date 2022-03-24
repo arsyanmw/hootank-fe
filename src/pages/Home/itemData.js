@@ -60,6 +60,14 @@ export const ItemData = ({data, ...rest}) => {
     }
   };
 
+  const getTotalHutangByName = () => {
+    const hasManyHutang = dataHutangs.filter(
+      hutang => hutang.name === data.name,
+    );
+
+    return hasManyHutang.length;
+  };
+
   return (
     <View style={{flex: 1, flexDirection: 'row', padding: 10}}>
       <View style={{flex: 5, flexDirection: 'row'}}>
@@ -90,7 +98,7 @@ export const ItemData = ({data, ...rest}) => {
                 fontWeight: 'bold',
                 color: '#95a5a6',
               }}>
-              {getProductName()}
+              {getProductName()} {getTotalHutangByName() > 1 ? ', dll.' : ''}
             </Text>
           </View>
         </View>
