@@ -36,34 +36,26 @@ export const ItemDataDetails = ({data, ...rest}) => {
     <View style={{flex: 1, flexDirection: 'row', padding: 10}}>
       <View style={{flex: 4, flexDirection: 'row'}}>
         <View style={{flex: 1, justifyContent: 'center'}}>
-          <Image source={getImage()} style={{width: 40, height: 40}} />
+          <Image
+            source={getImage()}
+            style={{width: 40, height: 40, borderRadius: 50}}
+          />
         </View>
         <View
           style={{
             flex: 5,
             flexDirection: 'column',
-            paddingLeft: 23,
+            paddingLeft: 28,
             justifyContent: 'center',
           }}>
           <View>
             <Text style={{fontSize: 15, fontWeight: 'bold', color: '#000'}}>
-              {data.name}
-            </Text>
-          </View>
-          <View>
-            <Text
-              style={{
-                fontSize: 10,
-                fontStyle: 'italic',
-                fontWeight: 'bold',
-                color: '#95a5a6',
-              }}>
               {getProductName()}
             </Text>
           </View>
         </View>
       </View>
-      <View style={{flex: 2, justifyContent: 'center', alignItems: 'center'}}>
+      <View style={{justifyContent: 'center', width: 95}}>
         <NumberFormat
           value={data.price}
           displayType={'text'}
@@ -74,6 +66,13 @@ export const ItemDataDetails = ({data, ...rest}) => {
               {value}
             </Text>
           )}
+        />
+      </View>
+      <View>
+        <Button
+          tipe={'success'}
+          style={{width: 40, borderRadius: 50}}
+          {...rest}
         />
       </View>
     </View>
