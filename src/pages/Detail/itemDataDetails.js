@@ -7,7 +7,8 @@ import token from '../../assets/products/token.png';
 import dana from '../../assets/products/dana.png';
 import ovo from '../../assets/products/ovo.png';
 import sim from '../../assets/products/sim.png';
-import RightArrow from '../../assets/icons/right-arrow.svg';
+import unknown from '../../assets/icons/unknown.png';
+import {Button} from '../../components';
 
 export const ItemDataDetails = ({data, ...rest}) => {
   const getImage = () => {
@@ -21,7 +22,7 @@ export const ItemDataDetails = ({data, ...rest}) => {
       case 'pulsa':
         return sim;
       default:
-        return null;
+        return unknown;
     }
   };
 
@@ -34,7 +35,7 @@ export const ItemDataDetails = ({data, ...rest}) => {
 
   return (
     <View style={{flex: 1, flexDirection: 'row', padding: 10}}>
-      <View style={{flex: 4, flexDirection: 'row'}}>
+      <View style={{flex: 3, flexDirection: 'row'}}>
         <View style={{flex: 1, justifyContent: 'center'}}>
           <Image
             source={getImage()}

@@ -5,6 +5,7 @@ import {
   setDataHutangs,
   setIsLoading,
   setIsRefreshing,
+  setSudahBayar,
 } from '../../config/redux/action';
 import {ItemDataDetails} from './itemDataDetails';
 import {CardDetails, Header, LoadingScreen} from '../../components';
@@ -24,6 +25,10 @@ const Detail = ({route, navigation}) => {
     dispatch(setDataHutangs());
   };
 
+  const handleSudahbayar = id => {
+    dispatch(setSudahBayar(id));
+  };
+
   if (isLoading) {
     return <LoadingScreen />;
   } else {
@@ -34,17 +39,21 @@ const Detail = ({route, navigation}) => {
           refreshControl={
             <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
           }>
-          {dataHutangByName.length ? (
-            dataHutangByName.map(item => (
-              <CardDetails key={item._id}>
-                <ItemDataDetails data={item} />
-              </CardDetails>
-            ))
-          ) : (
-            <Text>Data tidak ditemukan</Text>
-          )}
+          {dataHutangByName.length
+            ? dataHutangByName.map(item => (
+                <CardDetails key={item._id}>
+                  <ItemDataDetails
+                    data={item}
+                    onPress={() => handleSudahbayar(item._id)}
+                  />
+                </CardDetails>
+              ))
+            : navigation.goBack()}
         </ScrollView>
-        <Header title={'Detail'} nav={() => navigation.goBack()} />
+        <Header
+          title={'Detail Hutang ' + name}
+          nav={() => navigation.goBack()}
+        />
       </View>
     );
   }
