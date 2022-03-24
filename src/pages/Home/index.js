@@ -170,7 +170,7 @@ const ModalForm = ({visible, onClose, formData, onChange, addData}) => {
               />
             </View>
             <View style={{marginTop: 10}}>
-              <Text style={{fontWeight: 'bold', color: '#000'}}>Price</Text>
+              <Text style={{fontWeight: 'bold', color: '#000'}}>Harga</Text>
               <TextInput
                 style={{
                   borderBottomWidth: 1,
