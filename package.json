@@ -6,6 +6,7 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
+    "clean": "rm -rf node_modules package-lock.json yarn.lock android/build android/app/build && npm cache clear --force && npm cache clean --force && npm cache verify && npm i && npm start -- --reset-cache",
     "test": "jest",
     "lint": "eslint ."
   },
