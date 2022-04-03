@@ -24,10 +24,11 @@ export const Header = props => {
         </TouchableOpacity>
         <Text
           style={{
-            fontWeight: 'bold',
+            fontFamily: 'Poppins-SemiBold',
             fontSize: 20,
             color: '#000',
             marginLeft: 10,
+            padding: 5,
           }}>
           {props.title}
         </Text>

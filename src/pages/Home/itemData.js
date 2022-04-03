@@ -52,7 +52,8 @@ export const ItemData = ({data, ...rest}) => {
             bottom: 0,
             right: 0,
           }}>
-          <Text style={{color: '#fff', fontSize: 10, fontWeight: 'bold'}}>
+          <Text
+            style={{color: '#fff', fontSize: 10, fontFamily: 'Poppins-Bold'}}>
             +{hasManyHutang.length - 1}
           </Text>
         </View>
@@ -86,7 +87,12 @@ export const ItemData = ({data, ...rest}) => {
             justifyContent: 'center',
           }}>
           <View>
-            <Text style={{fontSize: 15, fontWeight: 'bold', color: '#000'}}>
+            <Text
+              style={{
+                fontSize: 15,
+                fontFamily: 'Mulish-ExtraBold',
+                color: '#000',
+              }}>
               {data.name}
             </Text>
           </View>
@@ -94,8 +100,7 @@ export const ItemData = ({data, ...rest}) => {
             <Text
               style={{
                 fontSize: 12,
-                fontStyle: 'italic',
-                fontWeight: 'bold',
+                fontFamily: 'Mulish-BoldItalic',
                 color: '#95a5a6',
               }}>
               {getProductName()} {getTotalHutangByName() > 1 ? ', dll.' : ''}

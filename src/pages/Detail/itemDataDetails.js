@@ -50,7 +50,12 @@ export const ItemDataDetails = ({data, ...rest}) => {
             justifyContent: 'center',
           }}>
           <View>
-            <Text style={{fontSize: 15, fontWeight: 'bold', color: '#000'}}>
+            <Text
+              style={{
+                fontSize: 15,
+                color: '#000',
+                fontFamily: 'Mulish-ExtraBold',
+              }}>
               {getProductName()}
             </Text>
           </View>
@@ -63,7 +68,8 @@ export const ItemDataDetails = ({data, ...rest}) => {
           thousandSeparator={true}
           prefix={'Rp '}
           renderText={value => (
-            <Text style={{fontSize: 15, fontWeight: 'bold', color: '#000'}}>
+            <Text
+              style={{fontSize: 15, color: '#000', fontFamily: 'Mulish-Black'}}>
               {value}
             </Text>
           )}

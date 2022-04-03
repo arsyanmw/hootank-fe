@@ -46,6 +46,6 @@ const styles = StyleSheet.create({
   },
   btnText: {
     color: '#fff',
-    fontWeight: 'bold',
+    fontFamily: 'Mulish-ExtraBold',
   },
 });

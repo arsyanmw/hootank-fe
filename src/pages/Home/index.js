@@ -138,7 +138,7 @@ const ModalForm = ({visible, onClose, formData, onChange, addData}) => {
               }}>
               <Text
                 style={{
-                  fontWeight: 'bold',
+                  fontFamily: 'Mulish-Bold',
                   fontSize: 15,
                   color: '#fff',
                 }}>
@@ -149,36 +149,42 @@ const ModalForm = ({visible, onClose, formData, onChange, addData}) => {
 
           <View style={{padding: 15}}>
             <View style={{marginTop: 20}}>
-              <Text style={{fontWeight: 'bold', color: '#000'}}>Nama</Text>
+              <Text style={{fontFamily: 'Mulish-ExtraBold', color: '#000'}}>
+                Nama
+              </Text>
               <TextInput
                 style={{
                   borderBottomWidth: 1,
                   color: '#34495e',
-                  fontWeight: 'bold',
+                  fontFamily: 'Poppins-SemiBold',
                 }}
                 value={formData.name}
                 onChangeText={e => onChange(e, 'name')}
               />
             </View>
             <View style={{marginTop: 10}}>
-              <Text style={{fontWeight: 'bold', color: '#000'}}>Produk</Text>
+              <Text style={{fontFamily: 'Mulish-ExtraBold', color: '#000'}}>
+                Produk
+              </Text>
               <TextInput
                 style={{
                   borderBottomWidth: 1,
                   color: '#34495e',
-                  fontWeight: 'bold',
+                  fontFamily: 'Poppins-SemiBold',
                 }}
                 value={formData.product}
                 onChangeText={e => onChange(e, 'product')}
               />
             </View>
             <View style={{marginTop: 10}}>
-              <Text style={{fontWeight: 'bold', color: '#000'}}>Harga</Text>
+              <Text style={{fontFamily: 'Mulish-ExtraBold', color: '#000'}}>
+                Harga
+              </Text>
               <TextInput
                 style={{
                   borderBottomWidth: 1,
                   color: '#34495e',
-                  fontWeight: 'bold',
+                  fontFamily: 'Poppins-SemiBold',
                 }}
                 value={formData.price}
                 onChangeText={e => onChange(e, 'price')}

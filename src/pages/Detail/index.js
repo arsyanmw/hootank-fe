@@ -81,7 +81,7 @@ const Detail = ({route, navigation}) => {
           <View
             style={[
               globalVariable.padding,
-              {alignItems: 'center', marginTop: 20},
+              {alignItems: 'center', marginTop: 20, marginBottom: 50},
             ]}>
             <Text
               style={{
@@ -118,7 +118,7 @@ const Detail = ({route, navigation}) => {
                     borderRadius: 50,
                     backgroundColor: '#27ae60',
                   }}>
-                  <Text style={{color: '#fff', fontWeight: 'bold'}}>
+                  <Text style={{color: '#fff', fontFamily: 'Mulish-Bold'}}>
                     Tandai Sudah Lunas Semua
                   </Text>
                 </TouchableOpacity>
