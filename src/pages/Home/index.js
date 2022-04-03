@@ -67,7 +67,19 @@ const Home = ({navigation}) => {
   };
 
   const addData = () => {
-    dispatch(createHutang(form));
+    // validate form on submit
+    if (form.name === '') {
+      alert('Nama harus diisi');
+      return;
+    } else if (form.product === '') {
+      alert('Produk harus diisi');
+      return;
+    } else if (form.price === '') {
+      alert('Jumlah Hutang harus diisi');
+      return;
+    } else {
+      dispatch(createHutang(form));
+    }
   };
 
   const onChange = (e, type) => {
