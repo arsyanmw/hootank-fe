@@ -1,5 +1,11 @@
 import React from 'react';
-import {View, Text, ScrollView, RefreshControl} from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  RefreshControl,
+  TouchableOpacity,
+} from 'react-native';
 import {useDispatch, useSelector, connect} from 'react-redux';
 import {
   setDataHutangs,
@@ -8,7 +14,8 @@ import {
   setSudahBayar,
 } from '../../config/redux/action';
 import {ItemDataDetails} from './itemDataDetails';
-import {CardDetails, Header, LoadingScreen} from '../../components';
+import {Button, CardDetails, Header, LoadingScreen} from '../../components';
+import NumberFormat from 'react-number-format';
 import {globalVariable} from '../../variables/global';
 
 const Detail = ({route, navigation}) => {
@@ -29,11 +36,23 @@ const Detail = ({route, navigation}) => {
     dispatch(setSudahBayar(id));
   };
 
+  const getTotalHutangByName = () => {
+    let total = 0;
+    dataHutangByName.forEach(item => {
+      total += item.price;
+    });
+    return total;
+  };
+
   if (isLoading) {
     return <LoadingScreen />;
   } else {
     return (
       <View style={{height: '100%', backgroundColor: '#fff'}}>
+        <Header
+          title={'Detail Hutang ' + name}
+          nav={() => navigation.goBack()}
+        />
         <ScrollView
           style={[globalVariable.padding, {marginTop: 60}]}
           refreshControl={
@@ -49,11 +68,38 @@ const Detail = ({route, navigation}) => {
                 </CardDetails>
               ))
             : navigation.goBack()}
+          <View
+            style={[
+              globalVariable.padding,
+              {alignItems: 'center', marginTop: 20},
+            ]}>
+            <Text
+              style={{
+                fontFamily: 'Mulish-Black',
+                fontSize: 15,
+                color: '#b2bec3',
+              }}>
+              Total Hutang
+            </Text>
+            <NumberFormat
+              value={getTotalHutangByName()}
+              displayType={'text'}
+              thousandSeparator={true}
+              prefix={'Rp '}
+              renderText={value => (
+                <Text
+                  style={{
+                    marginTop: 15,
+                    fontFamily: 'Poppins-ExtraBold',
+                    fontSize: 20,
+                    color: '#000',
+                  }}>
+                  {value}
+                </Text>
+              )}
+            />
+          </View>
         </ScrollView>
-        <Header
-          title={'Detail Hutang ' + name}
-          nav={() => navigation.goBack()}
-        />
       </View>
     );
   }
