@@ -31,8 +31,7 @@ import {colors} from '../../variables/colors';
 
 const Home = ({navigation}) => {
   const {dataHutangs, form} = useSelector(state => state.hutangsReducer);
-  const {listProduks} = useSelector(state => state.produksReducer);
-  const {isLoading, modalVisible, isRefreshing} = useSelector(
+  const {isLoading, modalVisible, isRefreshing, loadingType} = useSelector(
     state => state.globalReducer,
   );
 
@@ -93,7 +92,7 @@ const Home = ({navigation}) => {
   };
 
   if (isLoading) {
-    return <LoadingScreen />;
+    return <LoadingScreen type={loadingType} />;
   } else {
     return (
       <View style={{height: '100%', backgroundColor: '#fff'}}>

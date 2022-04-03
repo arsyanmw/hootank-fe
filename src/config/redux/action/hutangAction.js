@@ -1,5 +1,10 @@
 import Axios from 'axios';
-import {setIsLoading, setIsRefreshing, setModalVisible} from './globalAction';
+import {
+  setIsLoading,
+  setIsRefreshing,
+  setLoadingType,
+  setModalVisible,
+} from './globalAction';
 
 export const setDataHutangs = () => dispatch => {
   const urlDev = 'http://10.0.2.2:3030/hutang/list-hutang';
@@ -14,6 +19,7 @@ export const setDataHutangs = () => dispatch => {
       });
 
       dispatch(setIsLoading(false));
+      dispatch(setLoadingType(''));
       dispatch(setIsRefreshing(false));
     })
     .catch(err => {
@@ -30,6 +36,7 @@ export const setEmptyForm = () => {
 };
 
 export const createHutang = form => dispatch => {
+  dispatch(setLoadingType('send'));
   dispatch(setIsLoading(true));
   dispatch(setModalVisible(false));
   const {name, product, price} = form;

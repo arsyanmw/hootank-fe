@@ -18,3 +18,10 @@ export const setIsRefreshing = payload => {
     payload: payload,
   };
 };
+
+export const setLoadingType = payload => {
+  return {
+    type: 'SET_TYPE_LOADING',
+    payload: payload,
+  };
+};

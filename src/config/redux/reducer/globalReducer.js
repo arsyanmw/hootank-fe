@@ -2,6 +2,7 @@ const initialStateGlobal = {
   isLoading: true,
   modalVisible: false,
   isRefreshing: false,
+  loadingType: '',
 };
 
 const globalReducer = (state = initialStateGlobal, action) => {
@@ -20,6 +21,11 @@ const globalReducer = (state = initialStateGlobal, action) => {
       return {
         ...state,
         isRefreshing: action.payload,
+      };
+    case 'SET_TYPE_LOADING':
+      return {
+        ...state,
+        loadingType: action.payload,
       };
     default:
       return state;

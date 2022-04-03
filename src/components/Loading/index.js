@@ -3,9 +3,13 @@ import LottieView from 'lottie-react-native';
 import getData from '../../assets/lottie/getData.json';
 import ask from '../../assets/lottie/ask.json';
 import waiting from '../../assets/lottie/waiting.json';
+import sending from '../../assets/lottie/sending.json';
 import React from 'react';
 
-export const LoadingScreen = () => {
+export const LoadingScreen = props => {
+  const {type = ''} = props;
+  let loading = null;
+
   const loadingText = [
     {
       title: 'Tunggu Sebentar ya..',
@@ -29,18 +33,48 @@ export const LoadingScreen = () => {
       },
     },
   ];
-  const random = Math.floor(Math.random() * loadingText.length);
+
+  const sendLoading = [
+    {
+      title: 'Membuat data hutang..',
+      icon: sending,
+      style: {
+        height: 100,
+      },
+    },
+    {
+      title: 'Tunggu Sebentar ya..',
+      icon: sending,
+      style: {
+        height: 100,
+      },
+    },
+  ];
+
+  const random = () => {
+    if (type === 'send') {
+      return Math.floor(sendLoading.length * Math.random());
+    } else {
+      return Math.floor(loadingText.length * Math.random());
+    }
+  };
+
+  if (type === 'send') {
+    loading = sendLoading[random()];
+  } else {
+    loading = loadingText[random()];
+  }
 
   return (
     <View style={{height: '100%'}}>
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <LottieView
-          source={loadingText[random].icon}
+          source={loading.icon}
           autoPlay
-          style={[{width: '80%'}, loadingText[random].style]}
+          style={[{width: '80%'}, loading.style]}
         />
         <Text style={{fontFamily: 'Mulish-ExtraBold', color: '#1C658C'}}>
-          {loadingText[random].title}
+          {loading.title}
         </Text>
       </View>
     </View>
