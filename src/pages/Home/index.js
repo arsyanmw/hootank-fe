@@ -216,7 +216,7 @@ const EmptyDataScreen = () => {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <LottieView source={empty} autoPlay style={{width: '50%'}} />
-      <Text style={{fontWeight: 'bold', color: 'darkgrey'}}>
+      <Text style={{fontFamily: 'Mulish-ExtraBold', color: 'darkgrey'}}>
         Kayanya semua hutang udah dibayar deh..
       </Text>
     </View>

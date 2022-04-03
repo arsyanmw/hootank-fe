@@ -39,7 +39,7 @@ export const LoadingScreen = () => {
           autoPlay
           style={[{width: '80%'}, loadingText[random].style]}
         />
-        <Text style={{fontWeight: 'bold', color: '#1C658C'}}>
+        <Text style={{fontFamily: 'Mulish-ExtraBold', color: '#1C658C'}}>
           {loadingText[random].title}
         </Text>
       </View>
