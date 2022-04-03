@@ -12,6 +12,7 @@ import {
   setIsLoading,
   setIsRefreshing,
   setSudahBayar,
+  setSudahBayarMultiple,
 } from '../../config/redux/action';
 import {ItemDataDetails} from './itemDataDetails';
 import {Button, CardDetails, Header, LoadingScreen} from '../../components';
@@ -42,6 +43,15 @@ const Detail = ({route, navigation}) => {
       total += item.price;
     });
     return total;
+  };
+
+  const multipleBayarByName = () => {
+    let ids = [];
+    dataHutangByName.forEach(item => {
+      ids.push(item._id);
+    });
+
+    ids.length && dispatch(setSudahBayarMultiple(ids));
   };
 
   if (isLoading) {
@@ -90,7 +100,7 @@ const Detail = ({route, navigation}) => {
                 <Text
                   style={{
                     marginTop: 15,
-                    fontFamily: 'Poppins-ExtraBold',
+                    fontFamily: 'Poppins-Bold',
                     fontSize: 20,
                     color: '#000',
                   }}>
@@ -98,6 +108,22 @@ const Detail = ({route, navigation}) => {
                 </Text>
               )}
             />
+            {dataHutangByName.length > 1 ? (
+              <View style={{marginTop: 15}}>
+                <TouchableOpacity
+                  onPress={() => multipleBayarByName()}
+                  style={{
+                    paddingHorizontal: 10,
+                    paddingVertical: 8,
+                    borderRadius: 50,
+                    backgroundColor: '#27ae60',
+                  }}>
+                  <Text style={{color: '#fff', fontWeight: 'bold'}}>
+                    Tandai Sudah Lunas Semua
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            ) : null}
           </View>
         </ScrollView>
       </View>
