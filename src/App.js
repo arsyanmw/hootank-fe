@@ -10,18 +10,18 @@ import {Store} from './config';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
-  return (
-    <Provider store={Store}>
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName={'Home'}
-          screenOptions={{headerShown: false}}>
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Detail" component={Detail} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </Provider>
-  );
+    return (
+        <Provider store={Store}>
+            <NavigationContainer>
+                <Stack.Navigator
+                    initialRouteName={'Home'}
+                    screenOptions={{headerShown: false}}>
+                    <Stack.Screen name="Home" component={Home} />
+                    <Stack.Screen name="Detail" component={Detail} />
+                </Stack.Navigator>
+            </NavigationContainer>
+        </Provider>
+    );
 };
 
 export default App;
