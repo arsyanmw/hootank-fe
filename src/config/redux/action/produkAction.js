@@ -1,9 +1,10 @@
 import Axios from 'axios';
+import {API_URL} from '@env';
+
+const apiUrl = API_URL;
 
 export const setListProduks = () => dispatch => {
-    const urlProd = 'https://utank-api.herokuapp.com/produk/list-produk';
-
-    Axios.get(urlProd)
+    Axios.get(`${apiUrl}/produk/list-produk`)
         .then(res => {
             const listProduk = () => {
                 const arrProduk = [];

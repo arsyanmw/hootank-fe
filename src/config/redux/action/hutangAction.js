@@ -5,12 +5,12 @@ import {
     setLoadingType,
     setModalVisible,
 } from './globalAction';
+import {API_URL} from '@env';
+
+const apiUrl = API_URL;
 
 export const setDataHutangs = () => dispatch => {
-    const urlDev = 'http://10.0.2.2:3030/hutang/list-hutang';
-    const urlProd = 'https://utank-api.herokuapp.com/hutang/list-hutang';
-
-    Axios.get(urlProd)
+    Axios.get(`${apiUrl}/hutang/list-hutang`)
         .then(res => {
             //set data hutang
             dispatch({
@@ -42,7 +42,7 @@ export const createHutang = form => dispatch => {
     const {name, product, price} = form;
 
     Axios.post(
-        'https://utank-api.herokuapp.com/hutang/add-hutang',
+        `${apiUrl}/hutang/add-hutang`,
         {name: name, product: product.toLowerCase(), price: price},
         {
             headers: {
